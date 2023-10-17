@@ -1,0 +1,19 @@
+version: 2
+
+seeds:            
+  - name: dim_device_info
+    description: A mapping of device id and their detailed info
+    columns:
+      - name: device_id
+        tests:
+          - unique
+          - not_null
+      - name: location
+        quote: true
+        tests:
+          - not_null
+      - name: model
+        quote: true
+        tests:
+          - not_null    
+ 

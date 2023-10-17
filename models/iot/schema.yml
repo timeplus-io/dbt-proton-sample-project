@@ -1,0 +1,34 @@
+version: 2
+sources:
+  - name: default
+    description: these tables are created via Kafka/File source
+    tables:
+      - name: raw_iot_data
+models:
+  - name: iot_data
+    description: a transformed view, with device->device_id and time from string to datetime
+    columns:
+      - name: device_id
+        description: the primary key for the device
+        tests:
+          - not_null
+      - name: number
+        description: the sensor data, say temperature
+        tests:
+          - not_null
+      - name: time
+        description: the event time
+        tests:
+          - not_null   
+      - name: location
+        description: the location of the device
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['rack1','rack2']
+      - name: model
+        description: the factory model of the device
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['F11','F12']
